@@ -4,18 +4,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.education.coinman.game.model.CoinMan;
 
 public class GameScreen implements Screen {
 
     private Texture bgTexture;
-    private Batch batch;
+    private Texture coinManTexture;
+    private SpriteBatch batch;
+    private CoinMan coinMan;
 
     @Override
     public void show() {
         batch = new SpriteBatch();
         bgTexture = new Texture("bg.png");
+        coinManTexture = new Texture("frame-1.png");
+        coinMan = new CoinMan(coinManTexture,0,0,coinManTexture.getWidth() / 2, coinManTexture.getHeight() / 2);
     }
 
     @Override
@@ -24,6 +28,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.draw(bgTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        coinMan.draw(batch);
         batch.end();
     }
 
