@@ -12,5 +12,6 @@ public class Main extends Game {
 	public void create() {
 		gameScreen = new GameScreen();
 		setScreen(gameScreen);
+
 	}
 }

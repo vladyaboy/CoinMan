@@ -6,23 +6,51 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.education.coinman.game.model.Coin;
 import com.education.coinman.game.model.CoinMan;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class GameScreen implements Screen {
 
     private Texture bgTexture;
     private Texture coinManTexture;
+    private Texture coinTexture;
     private SpriteBatch batch;
     private CoinMan coinMan;
     private OrthographicCamera camera;
+    private int coinCount = 100;
+    private ArrayList<Coin> coinArrayList;
+    public static float deltaCff;
+    private Random random;
 
     @Override
     public void show() {
         batch = new SpriteBatch();
         bgTexture = new Texture("bg.png");
         coinManTexture = new Texture("frame-1.png");
-        coinMan = new CoinMan(coinManTexture,0,0,coinManTexture.getWidth() / 2, coinManTexture.getHeight() / 2);
+        coinMan = new CoinMan(coinManTexture,Gdx.graphics.getWidth() / 3,0,coinManTexture.getWidth() / 3, coinManTexture.getHeight() / 3);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+        coinTexture = new Texture("coin.png");
+        coinArrayList = new ArrayList<>();
+        random = new Random();
+        generateCoins(coinCount, 10000);
+
+    }
+
+    private void generateCoins(int coinCount, int ping) {
+        for(int i = 0; i < coinCount; i++) {
+            int count = 0;
+            while (count < ping) {
+                count++;
+                if(count == ping) {
+                    float coinX = Gdx.graphics.getWidth();
+                    float coinY = random.nextFloat() * Gdx.graphics.getHeight();
+                    coinArrayList.add(new Coin(coinTexture, coinX, coinY, coinTexture.getWidth(), coinTexture.getHeight()));
+                }
+            }
+        }
     }
 
     @Override
@@ -32,10 +60,14 @@ public class GameScreen implements Screen {
 
         batch.begin();
 
+        deltaCff = delta;
+
         batch.setProjectionMatrix(camera.combined);
         batch.draw(bgTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         coinMan.draw(batch);
-
+        for(Coin coin : coinArrayList) {
+            coin.draw(batch);
+        }
         batch.end();
     }
 
