@@ -20,10 +20,13 @@ public class GameScreen implements Screen {
     private SpriteBatch batch;
     private CoinMan coinMan;
     private OrthographicCamera camera;
-    private int coinCount = 100;
+    private int coinMax = 100;
     private ArrayList<Coin> coinArrayList;
     public static float deltaCff;
     private Random random;
+    private int coinPingMax = 10;
+    private int coinPingCount = 0;
+    private int coinCount = 0;
 
     @Override
     public void show() {
@@ -35,22 +38,13 @@ public class GameScreen implements Screen {
         coinTexture = new Texture("coin.png");
         coinArrayList = new ArrayList<>();
         random = new Random();
-        generateCoins(coinCount, 10000);
 
     }
 
-    private void generateCoins(int coinCount, int ping) {
-        for(int i = 0; i < coinCount; i++) {
-            int count = 0;
-            while (count < ping) {
-                count++;
-                if(count == ping) {
-                    float coinX = Gdx.graphics.getWidth();
-                    float coinY = random.nextFloat() * Gdx.graphics.getHeight();
-                    coinArrayList.add(new Coin(coinTexture, coinX, coinY, coinTexture.getWidth(), coinTexture.getHeight()));
-                }
-            }
-        }
+    private void generateCoin() {
+            float coinX = Gdx.graphics.getWidth();
+            float coinY = random.nextFloat() * Gdx.graphics.getHeight();
+            coinArrayList.add(new Coin(coinTexture, coinX, coinY, coinTexture.getWidth() / 3, coinTexture.getHeight() / 3));
     }
 
     @Override
@@ -65,6 +59,15 @@ public class GameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);
         batch.draw(bgTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         coinMan.draw(batch);
+
+        if (coinPingCount < coinPingMax){
+            coinPingCount++;
+        } else {
+            coinPingCount = 0;
+            coinCount++;
+            generateCoin();
+        }
+
         for(Coin coin : coinArrayList) {
             coin.draw(batch);
         }
