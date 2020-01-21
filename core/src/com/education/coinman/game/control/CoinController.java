@@ -18,7 +18,6 @@ public class CoinController {
     public float getMoveSpeed() { return moveSpeed; }
     public void setMoveSpeed(int moveSpeed) { this.moveSpeed = moveSpeed; }
 
-
     public void handle(){
                 bounds.setPosition(bounds.getX() - moveSpeed, bounds.getY());
     }
