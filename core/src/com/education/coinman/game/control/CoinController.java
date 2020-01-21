@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class CoinController {
 
-    private int moveSpeed = 10;
+    private float moveSpeed = 5;
     private int speedCount = 0;
     private Polygon bounds;
 
@@ -15,11 +15,11 @@ public class CoinController {
         this.bounds = bounds;
     }
 
-    public int getMoveSpeed() { return moveSpeed; }
+    public float getMoveSpeed() { return moveSpeed; }
     public void setMoveSpeed(int moveSpeed) { this.moveSpeed = moveSpeed; }
 
 
     public void handle(){
-                bounds.setPosition(bounds.getX() - 1f, bounds.getY());
+                bounds.setPosition(bounds.getX() - moveSpeed, bounds.getY());
     }
 }
