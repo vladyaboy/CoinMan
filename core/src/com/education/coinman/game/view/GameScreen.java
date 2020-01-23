@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.education.coinman.game.model.Bomb;
 import com.education.coinman.game.model.Coin;
 import com.education.coinman.game.model.CoinMan;
 
@@ -17,15 +18,19 @@ public class GameScreen implements Screen {
     private Texture bgTexture;
     private Texture coinManTexture;
     private Texture coinTexture;
+    private Texture bombTexture;
     private SpriteBatch batch;
     private CoinMan coinMan;
     private OrthographicCamera camera;
     private int coinMax = 100;
     private ArrayList<Coin> coinArrayList;
+    private ArrayList<Bomb> bombArrayList;
     public static float deltaCff;
     private Random random;
     private int coinPingMax = 10;
     private int coinPingCount = 0;
+    private int bombPingMax = 100;
+    private int bombPingCount = 0;
     private int coinCount = 0;
 
     @Override
@@ -36,7 +41,9 @@ public class GameScreen implements Screen {
         coinMan = new CoinMan(coinManTexture,Gdx.graphics.getWidth() / 3,0,coinManTexture.getWidth() / 3, coinManTexture.getHeight() / 3);
         camera = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         coinTexture = new Texture("coin.png");
+        bombTexture = new Texture("bomb.png");
         coinArrayList = new ArrayList<>();
+        bombArrayList = new ArrayList<>();
         random = new Random();
 
     }
@@ -45,6 +52,12 @@ public class GameScreen implements Screen {
             float coinX = Gdx.graphics.getWidth();
             float coinY = random.nextFloat() * Gdx.graphics.getHeight();
             coinArrayList.add(new Coin(coinTexture, coinX, coinY, coinTexture.getWidth() / 3, coinTexture.getHeight() / 3));
+    }
+
+    private void generateBomb() {
+        float bombX = Gdx.graphics.getWidth();
+        float bombY = random.nextFloat() * Gdx.graphics.getHeight();
+        bombArrayList.add(new Bomb(bombTexture, bombX, bombY, coinTexture.getWidth() / 3, coinTexture.getHeight() / 3));
     }
 
     @Override
@@ -71,6 +84,19 @@ public class GameScreen implements Screen {
         for(Coin coin : coinArrayList) {
             coin.draw(batch);
         }
+
+        if (bombPingCount < bombPingMax){
+            bombPingCount++;
+        } else {
+            bombPingCount = 0;
+            coinCount++;
+            generateBomb();
+        }
+
+        for(Bomb bomb : bombArrayList) {
+            bomb.draw(batch);
+        }
+
         batch.end();
     }
 

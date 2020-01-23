@@ -1,0 +1,14 @@
+[33mfddf901[m[33m ([m[1;36mHEAD[m[33m)[m HEAD@{0}: checkout: moving from 3032b578800da20dffefdbc611b6fe04c184453f to fddf901
+[33m3032b57[m[33m ([m[1;35mrefs/stash[m[33m)[m HEAD@{1}: checkout: moving from 9cb8e9a970c9b8ef46bfed6a12daf3a8e4e4df75 to 3032b57
+[33m9cb8e9a[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{2}: merge master: Fast-forward
+[33mbc43e48[m HEAD@{3}: checkout: moving from master to bc43e48
+[33m9cb8e9a[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{4}: checkout: moving from fddf9013c32bdb19187a93b587763482292b541b to master
+[33mfddf901[m[33m ([m[1;36mHEAD[m[33m)[m HEAD@{5}: commit: Add coin Class and coinControl Class
+[33m666fa16[m HEAD@{6}: commit: Create camera and change GameObject from Rectangle to Polygon
+[33m9cb8e9a[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{7}: checkout: moving from bc43e4831fbe627b0a60503591ed39bf1a8db9fb to 9cb8e9a970c9b8ef46bfed6a12daf3a8e4e4df75
+[33mbc43e48[m HEAD@{8}: checkout: moving from master to bc43e4831fbe627b0a60503591ed39bf1a8db9fb
+[33m9cb8e9a[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{9}: reset: moving to HEAD
+[33m9cb8e9a[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m HEAD@{10}: commit: test commit
+[33m07dfc1e[m HEAD@{11}: commit: test commit
+[33m218ac93[m HEAD@{12}: commit: add coinman to renderer
+[33mbc43e48[m HEAD@{13}: commit (initial): Initial commit
